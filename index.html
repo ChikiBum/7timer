@@ -412,78 +412,7 @@
 	</div>
 </div>
 
-<script src="plunigs/validator/validator.js"></script>
 <script src="scripts/script.js"></script>
-<script>
-	const valid = new Validator ({
-		selector: '#form1',
-		pattern: {
-			phone: /^\+380\d{9}$/,
-			zip: /\d{5,6}/
-		},
-		method: {
-			'phone': [
-				['notEmpty'],
-				['pattern', 'phone']
-			],
-			'email': [
-				['notEmpty'],
-				['pattern', 'email']
-			]
-		}
-	});
-	
-	valid.init();
-	
-	const valid2 = new Validator ({
-		selector: '#form2',
-		pattern: {
-			phone: /^\+380\d{9}$/,
-			zip: /\d{5,6}/,
-			form2name:  /[а-яА-ЯёЁ ]+/gi,
-			form2message: /[а-яА-ЯёЁ ]+/gi
-		},
-		method: {
-			'phone': [
-				['notEmpty'],
-				['pattern', 'phone']
-			],
-			'email': [
-				['notEmpty'],
-				['pattern', 'email']
-			],
-			'form2name': [
-				['notEmpty'],
-				['pattern', 'form2name']
-			],
-			'form2message': [
-				['notEmpty'],
-				['pattern', 'form2message']
-			]
-		}
-	});
-	
-	valid2.init();
 
-	const valid3 = new Validator ({
-		selector: '#form3',
-		pattern: {
-			phone: /^\+380\d{9}$/,
-			zip: /\d{5,6}/
-		},
-		method: {
-			'phone': [
-				['notEmpty'],
-				['pattern', 'phone']
-			],
-			'email': [
-				['notEmpty'],
-				['pattern', 'email']
-			]
-		}
-	});
-	
-	valid3.init();
-</script>
 </body>
 </html>
