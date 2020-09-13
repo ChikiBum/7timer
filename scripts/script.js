@@ -430,7 +430,13 @@ window.addEventListener('DOMContentLoaded',function(){
         const forms = document.querySelectorAll('form');
         
         const statusMassage = document.createElement('div'); 
-        statusMassage.style.csstext = 'font-size: 2rem';
+        statusMassage.style.csstext = 'font-size: 2rem; ';
+        statusMassage.setAttribute("style","height: 12rem; display: inline-block;");
+
+        const animateGif = document.createElement("img");
+            animateGif.setAttribute("src","./animation.gif");
+            animateGif.setAttribute("alt","animation preload");
+            animateGif.setAttribute("style","height: 100%");
 
         forms.forEach((elem) => {
             elem.addEventListener('submit', (event) => {
@@ -440,13 +446,9 @@ window.addEventListener('DOMContentLoaded',function(){
 
                 const inputs = form.querySelectorAll('input');
 
-                inputs.forEach((elem) => {
-                    // console.log(elem);
-                elem.value = '';
-                });
-
                 form.appendChild(statusMassage);
-                statusMassage.textContent = loadMessage;
+                // statusMassage.textContent = loadMessage;
+                statusMassage.append(animateGif);
                 const formData = new FormData(form);
                 let body = {};
 
@@ -460,13 +462,21 @@ window.addEventListener('DOMContentLoaded',function(){
 
                 postData(body, 
                     () => {
+                    statusMassage.setAttribute("style","height: ayto;");
                     statusMassage.textContent = successMessage; 
                     }, 
                     (error) => {
+                    statusMassage.setAttribute("style","height: ayto;");
                     statusMassage.textContent = errorMessage; 
                     console.error(error);
                     });
+                
+                inputs.forEach((elem) => {
+                    // console.log(elem);
+                elem.value = '';
+                });
             });
+
         });
 
         const postData = (body, outputData, errorData) => {
