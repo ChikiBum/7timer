@@ -438,27 +438,7 @@ window.addEventListener('DOMContentLoaded',function(){
             animateGif.setAttribute("alt","animation preload");
             animateGif.setAttribute("style","height: 100%");
 
-            const postData = (body) => {
-
-                return new Promise((resolve, reject) => {
-                    const request = new XMLHttpRequest();
-                    request.addEventListener('readystatechange', () =>{
-                        if (request.readyState !== 4){
-                            return;
-                        } 
-                        if (request.status === 200){
-                            resolve();
-                        } else {
-                            reject(request.status);
-                        }
-                        });
-        
-                    request.open('POST', './server.php');
-                    request.setRequestHeader('Content-Type', 'application/json');
-                    request.send(JSON.stringify(body));
-                });
-        };
-
+          
         forms.forEach((elem) => {
             elem.addEventListener('submit', (event) => {
                 event.preventDefault();
@@ -471,6 +451,7 @@ window.addEventListener('DOMContentLoaded',function(){
                 // statusMassage.textContent = loadMessage;
                 statusMassage.append(animateGif);
                 const formData = new FormData(form);
+               
                 let body = {};
 
                 // for (let val of formData.entries()){
@@ -482,12 +463,15 @@ window.addEventListener('DOMContentLoaded',function(){
                 });
 
                 postData(body) 
-                    .then(() => {
-                    statusMassage.setAttribute("style","height: ayto;");
+                    .then((response) => {
+                        if (response.status !== 200){
+                            throw new Error('status network not 200')
+                        }
+                    statusMassage.setAttribute("style","height: auto;");
                     statusMassage.textContent = successMessage; 
                     }) 
                     .catch((error) => {
-                    statusMassage.setAttribute("style","height: ayto;");
+                    statusMassage.setAttribute("style","height: auto;");
                     statusMassage.textContent = errorMessage; 
                     console.error(error);
                     });
@@ -500,7 +484,15 @@ window.addEventListener('DOMContentLoaded',function(){
 
         });
 
-       
+        const postData = (body) => {
+            return fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                  'Content-Type' : 'application/json'  
+                },
+                body: JSON.stringify(body)
+            });
+        };
     };
 
     sendForm();
