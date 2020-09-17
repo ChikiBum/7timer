@@ -38,6 +38,10 @@ html {
     font-size: 10px
 }
 
+#form3 .status-massage{
+    color: white;
+}
+
 .flex {
     display: -webkit-box;
     display: -ms-flexbox;

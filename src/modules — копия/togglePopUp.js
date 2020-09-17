@@ -3,12 +3,8 @@ let count,
 
 const animatePopup = () => {
 
-	const  popup = document.querySelector('.popup'),
-			popupContent = document.querySelector('.popup .popup-content'),
-			mainForm = document.querySelector('.popup .main-form');
-			popup.style.display = 'block';
-			mainForm.style.display = 'block';
-			popupContent.style.display = 'block';
+	const  popup = document.querySelector('.popup');
+	popup.style.display = 'block';
 
 	if (requestId === undefined) {
 		count = -120;
@@ -16,8 +12,6 @@ const animatePopup = () => {
 	}
 
 	popup.style.transform = `translate(${count++}%)`;
-	mainForm.style.transform = `translate(${count++}%)`;
-	popupContent.style.transform = `translate(${count++}%)`;
 
 	if (count < 0) {
 		requestAnimationFrame(animatePopup);
@@ -35,6 +29,7 @@ const togglePopUp = () => {
 
 	popupBtn.forEach(elem => {
 		elem.addEventListener('click', () => {
+			console.log(window.innerWidth);
 			if (window.innerWidth > 768) {
 				animatePopup();
 			} else {

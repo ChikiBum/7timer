@@ -9,9 +9,8 @@
         
         const statusMassage = document.createElement('div'); 
         statusMassage.style.csstext = 'font-size: 2rem; ';
-        statusMassage.classList.add('status-massage')
         statusMassage.setAttribute("style","height: 12rem; display: inline-block;");
-      
+
         const animateGif = document.createElement("img");
             animateGif.setAttribute("src","./animation.gif");
             animateGif.setAttribute("alt","animation preload");
@@ -27,7 +26,6 @@
                 const inputs = form.querySelectorAll('input');
 
                 form.appendChild(statusMassage);
-                statusMassage.textContent = '';
                 // statusMassage.textContent = loadMessage;
                 statusMassage.append(animateGif);
                 const formData = new FormData(form);
