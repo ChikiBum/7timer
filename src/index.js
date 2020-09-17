@@ -1,6 +1,7 @@
 'use strict';
 //polifils
 import '@babel/polyfill';
+import 'dom-node-polyfills';
 import 'formdata-polyfill';
 import 'fetch-polyfill';
 import 'nodelist-foreach-polyfill';
